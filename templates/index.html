@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVInsights | Electric Vehicle Market Performance & Insights</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f3f5f7; color: #1b2733; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 6%; background: rgba(10, 30, 50, 0.95);
+  }
+  .logo { font-size: 1.5rem; font-weight: 700; color: #fff; }
+  .logo span { color: #4caf50; }
+  .logo i { color: #ff9800; font-style: normal; margin-right: 6px; }
+  nav ul { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
+  nav a { color: #dfe8f0; text-decoration: none; font-size: 0.95rem; transition: color .2s; }
+  nav a:hover { color: #4caf50; }
+
+  .hero {
+    min-height: 100vh; padding: 140px 8% 160px; text-align: center; color: #fff;
+    background: linear-gradient(180deg, #0a2a4a 0%, #0f4a3a 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+  .hero h1 { font-size: 3rem; margin-bottom: 18px; }
+  .hero p { max-width: 720px; font-size: 1.1rem; line-height: 1.6; opacity: .92; margin-bottom: 30px; }
+  .btn {
+    display: inline-block; padding: 14px 34px; border-radius: 40px;
+    background: #4caf50; color: #fff; text-decoration: none; font-weight: 600;
+    box-shadow: 0 6px 18px rgba(76,175,80,.4); transition: transform .2s;
+  }
+  .btn:hover { transform: translateY(-3px); }
+
+  .kpi-wrap { max-width: 1200px; margin: -110px auto 0; padding: 0 20px; position: relative; z-index: 5; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+  .kpi {
+    background: #fff; border-top: 4px solid #4caf50; border-radius: 12px;
+    padding: 30px 20px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .kpi h2 { font-size: 2rem; color: #0a2a4a; }
+  .kpi p { margin-top: 8px; color: #5b6b7a; }
+
+  section { max-width: 1200px; margin: 0 auto; padding: 80px 20px 20px; }
+  section h2.title { font-size: 2rem; color: #0a2a4a; margin-bottom: 8px; }
+  section .sub { color: #5b6b7a; margin-bottom: 28px; }
+
+  .viz-box { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+  .card {
+    background: #fff; border-radius: 12px; padding: 26px;
+    border-left: 5px solid #4caf50; box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  }
+  .card h3 { color: #0a2a4a; margin-bottom: 10px; }
+  .card p { color: #4a5a68; line-height: 1.6; font-size: .95rem; }
+
+  footer { margin-top: 80px; background: #0a1e32; color: #cfd8e0; text-align: center; padding: 28px 10px; font-size: .9rem; }
+
+  @media (max-width: 768px) {
+    nav { flex-direction: column; gap: 8px; }
+    .hero h1 { font-size: 2.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><i>&#9889;</i>EV<span>Insights</span></div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#manufacturers">Manufacturers</a></li>
+    <li><a href="#battery">Battery</a></li>
+    <li><a href="#category">Category</a></li>
+    <li><a href="#trends">Trends</a></li>
+    <li><a href="#story">Story</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="home">
+  <h1>Performance &amp; Insights</h1>
+  <p>Interactive analysis of manufacturer sales, battery technology, range performance and market growth — built with Tableau, Python and Flask.</p>
+  <a href="#dashboard" class="btn">Explore Dashboard</a>
+</header>
+
+<div class="kpi-wrap">
+  <div class="kpi-grid">
+    <div class="kpi"><h2>1.55B</h2><p>Total EV Sales (Units)</p></div>
+    <div class="kpi"><h2 data-target="200">0</h2><p>Manufacturers</p></div>
+    <div class="kpi"><h2>324.5 km</h2><p>Top Category Range</p></div>
+    <div class="kpi"><h2>NMC</h2><p>Top Battery Type</p></div>
+  </div>
+</div>
+
+<section id="dashboard">
+  <h2 class="title">EV Market Performance Dashboard</h2>
+  <p class="sub">Interactive Tableau Public dashboard.</p>
+  <div class="viz-box">
+    <div class='tableauPlaceholder' id='viz1793117086166' style='position: relative'><noscript><a href='#'><img alt='EV Market Performance &amp; Insights ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;El&#47;ElectricVehicleMarketPerformanceInsights_17931089759700&#47;EVMarketPerformanceDashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='ElectricVehicleMarketPerformanceInsights_17931089759700&#47;EVMarketPerformanceDashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;El&#47;ElectricVehicleMarketPerformanceInsights_17931089759700&#47;EVMarketPerformanceDashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
+    <script type='text/javascript'>
+      var divElement = document.getElementById('viz1793117086166');
+      var vizElement = divElement.getElementsByTagName('object')[0];
+      if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1977px';}
+      var scriptElement = document.createElement('script');
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+  </div>
+</section>
+
+<section id="manufacturers">
+  <h2 class="title">Manufacturer Sales Analysis</h2>
+  <p class="sub">Top 10 manufacturers by annual sales units (out of 200).</p>
+  <div class="viz-box">
+    <canvas id="mfgChart" height="110"></canvas>
+  </div>
+  <div class="cards" style="margin-top:22px;">
+    <div class="card"><h3>Market Leader</h3><p>AmpereWorks leads with about 9.45M units, followed by CircuitWorks at 8.92M.</p></div>
+    <div class="card"><h3>Close Competition</h3><p>All manufacturers sell between 8.6M and 9.5M units, so the market is evenly spread.</p></div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  new Chart(document.getElementById('mfgChart'), {
+    type: 'bar',
+    data: {
+      labels: ['AmpereWorks','CircuitWorks','MomentumMobility','SurgeDynamics','TerraMotors','AmpereDynamics','VoltMobility','CurrentMotors','WattWheels','CircuitRides'],
+      datasets: [{
+        label: 'Annual Sales Units',
+        data: [9453209,8919177,8778501,8763611,8746119,8721216,8718601,8711573,8689635,8658233],
+        backgroundColor: '#2e7d32'
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true } }
+    }
+  });
+</script>
+
+<section id="battery">
+  <h2 class="title">Battery Type Analysis</h2>
+  <p class="sub">Share of vehicles by battery technology.</p>
+  <div class="viz-box" style="max-width:520px; margin:0 auto;">
+    <canvas id="batteryChart"></canvas>
+  </div>
+  <div class="cards" style="margin-top:22px;">
+    <div class="card"><h3>NMC Leads</h3><p>NMC is the most common battery type with about 33.8% of vehicles, closely followed by LFP at 32.0%.</p></div>
+    <div class="card"><h3>Emerging Tech</h3><p>Sodium-Ion (10.0%) and Solid-State (7.1%) are still small but growing options.</p></div>
+  </div>
+</section>
+
+<script>
+  new Chart(document.getElementById('batteryChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['NMC', 'LFP', 'NCA', 'Sodium-Ion', 'Solid-State'],
+      datasets: [{
+        data: [66957, 63418, 33774, 19865, 13958],
+        backgroundColor: ['#e53935', '#1e88e5', '#fb8c00', '#26a69a', '#558b2f']
+      }]
+    },
+    options: { plugins: { legend: { position: 'bottom' } } }
+  });
+</script>
+
+<section id="category">
+  <h2 class="title">Category-wise Range Analysis</h2>
+  <p class="sub">Average driving range (km) by vehicle category.</p>
+  <div class="viz-box">
+    <canvas id="categoryChart" height="130"></canvas>
+  </div>
+  <div class="cards" style="margin-top:22px;">
+    <div class="card"><h3>Highest Range</h3><p>Luxury Sedan (551 km) and Luxury SUV (525 km) offer the longest average range.</p></div>
+    <div class="card"><h3>Lowest Range</h3><p>Two-Wheeler Scooter (105 km) and Three-Wheeler (130 km) have the shortest range, suited for city use.</p></div>
+  </div>
+</section>
+
+<script>
+  new Chart(document.getElementById('categoryChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Luxury Sedan','Luxury SUV','Full-size SUV','Sedan','Crossover','Pickup Truck','Sports Car','Compact SUV','Van / MPV','Hatchback','Electric Bus','Electric Truck','Micro City Car','Three-Wheeler','Two-Wheeler Scooter'],
+      datasets: [{
+        label: 'Avg Range (km)',
+        data: [551,525,474,430,395,391,376,369,319,280,270,226,150,130,105],
+        backgroundColor: '#1e88e5'
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true } }
+    }
+  });
+</script>
+
+<section id="trends">
+  <h2 class="title">Annual Sales Trends</h2>
+  <p class="sub">Total EV sales by model year.</p>
+  <div class="viz-box">
+    <canvas id="trendChart" height="110"></canvas>
+  </div>
+  <div class="cards" style="margin-top:22px;">
+    <div class="card"><h3>Peak Year</h3><p>Sales peaked in 2019 at about 177.0M units, with 2024 close behind at 176.9M.</p></div>
+    <div class="card"><h3>Overall Pattern</h3><p>Sales stay in a narrow band of 166M to 177M units per year, with the lowest point in 2021 (165.8M).</p></div>
+  </div>
+</section>
+
+<script>
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels: ['2018','2019','2020','2021','2022','2023','2024','2025','2026'],
+      datasets: [{
+        label: 'Annual Sales Units (millions)',
+        data: [172.1, 177.0, 171.8, 165.8, 170.8, 172.4, 176.9, 173.2, 170.8],
+        borderColor: '#1e88e5',
+        backgroundColor: 'rgba(30,136,229,0.15)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 5
+      }]
+    },
+    options: {
+      scales: { y: { min: 160, title: { display: true, text: 'Units (millions)' } } }
+    }
+  });
+</script>
+
+<section id="story">
+  <h2 class="title">Data Story</h2>
+  <p class="sub">Understanding the EV market, performance and trends.</p>
+
+  <div class="viz-box" style="overflow-x:auto; text-align:center;">
+    <div class='tableauPlaceholder' id='viz1793118564016' style='position: relative'><noscript><a href='#'><img alt='EV Market Trends ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;El&#47;ElectricVehicleMarketPerformanceInsights_17931089759700&#47;EVMarketTrends&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='ElectricVehicleMarketPerformanceInsights_17931089759700&#47;EVMarketTrends' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;El&#47;ElectricVehicleMarketPerformanceInsights_17931089759700&#47;EVMarketTrends&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>
+    <script type='text/javascript'>
+      var divElement2 = document.getElementById('viz1793118564016');
+      var vizElement2 = divElement2.getElementsByTagName('object')[0];
+      vizElement2.style.width='1016px';
+      vizElement2.style.maxWidth='100%';
+      vizElement2.style.height='991px';
+      var scriptElement2 = document.createElement('script');
+      scriptElement2.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      vizElement2.parentNode.insertBefore(scriptElement2, vizElement2);
+    </script>
+  </div>
+
+  <div class="cards" style="margin-top:28px;">
+    <div class="card"><h3>1. Understanding the EV Market</h3><p>Overview of sales, manufacturers, batteries and regions.</p></div>
+    <div class="card"><h3>2. Analyzing EV Performance</h3><p>Category-wise range comparison.</p></div>
+    <div class="card"><h3>3. EV Market Trends</h3><p>Annual sales analysis by model year.</p></div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 EVInsights | Electric Vehicle Market Performance &amp; Insights | B.Tech CSE Capstone Project | Developed by: SUMIT SINGH PARIHAR
+</footer>
+
+<script>
+  document.querySelectorAll('.kpi h2[data-target]').forEach(function (el) {
+    var target = parseInt(el.getAttribute('data-target'));
+    var current = 0;
+    var step = Math.max(1, Math.ceil(target / 60));
+    var timer = setInterval(function () {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = current.toLocaleString();
+    }, 25);
+  });
+</script>
+
+</body>
+</html>
